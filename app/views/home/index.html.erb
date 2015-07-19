@@ -1,0 +1,9 @@
+<h1>Home Page</h1>
+<% if session[:email].nil?%>
+<a href="/home/signup"><button>Sign Up</button></a></br>
+<a href="/home/login"><button>Sign In</button></a>
+<%else%>
+<a href="/home/logout"><button>Logout</button></a>
+<p><%=session[:email]%></p>
+<%end%>
+
