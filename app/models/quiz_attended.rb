@@ -1,4 +1,4 @@
 class QuizAttended < ActiveRecord::Base
-	belongs to :user
-	belongs to :quiz
+	belongs_to :user
+	belongs_to :quiz
 end

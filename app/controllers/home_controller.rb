@@ -36,14 +36,16 @@ class HomeController < ApplicationController
     else
       puts user_obj.inspect
       session[:email] = user_obj.email
-       redirect_to :controller=>'dashboard', :action => 'index'
+      session[:user_id] = user_obj.id
+      redirect_to :controller=>'dashboard', :action => 'index'
  
     end
   end
 
   def logout
     session[:email] = nil
-    redirect_to action: 'index3'
+    session[:user_id] = nil
+    redirect_to action: 'index'
   end
 
 end
