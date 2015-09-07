@@ -1,0 +1,13 @@
+<h1>Quizzes created by me</h1>
+<table>
+<tr>
+<th>Quiz Name</th>
+<th>Quiz Type</th>
+</tr>
+<% @my_quiz.each do |quiz| %>
+<tr>
+<td><%=quiz.quiz_name%></td>
+<td><%=quiz.quiz_type%></td
+</tr>
+<%end%>
+</table>

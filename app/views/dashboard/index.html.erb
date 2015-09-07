@@ -1,4 +1,45 @@
 <h1>Dashboard</h1>
 
 <a href="/quiz/create_quiz"><button type="Create">Create a quiz</button></a>
+<a href="/quiz/my_quiz"><button type="my_quiz">My quiz</button></a>
+<a href="/home/index"><button type="logout">logout</button></a>
+</br>
+<select id="sel">
+  <option id="all" value="all">All</option>
+  <option id="general" value="general">General</option>
+  <option id="movies" value="movies">Movies</option>
+  <option id="entertainment" value="entertainment">Entertainment</option>
+  <option id="literature" value="literature">Literature</option>
+  <option id="sports" value="sports">Sports</option>
+  <option id="arts" value="arts">Arts</option>
+</select> 
+<table>
+<% @all_quiz.each do |quiz| %>
+	<tr>
+	<td><%=quiz.quiz_name%></td>
+	<td><%=quiz.quiz_type%></td>
+	<td><%=link_to "Participate", start_quiz_path(:quiz_id => quiz.id, :problem_id => 0)%></td>
+</br>
 
+	</tr>
+<%end%>
+</table>
+
+<script>
+$("#sel").on('change',function(){
+	if(window.location.href.indexOf('?') == -1)
+	{
+		window.location.href += "?type="+$('#sel').val();
+	}
+	else
+	{
+		window.location.href = window.location.href.substr(0,window.location.href.indexOf('=')+1)+$('#sel').val();
+	}
+});
+</script>
+
+<script>
+$('document').ready(function(){
+	$("#sel").val("<%=@selected%>");
+});
+</script>

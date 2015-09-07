@@ -18,6 +18,11 @@ Rails.application.routes.draw do
   get 'dashboard/index' => 'dashboard#index'
   get 'quiz/create_quiz' => 'quiz#create_quiz'
   get 'quiz/create' => 'quiz#create'
+  get 'problem/add_problem' => 'problem#add_problem'
+  get 'problem/add_prob' => 'problem#add_prob'
+  get 'quiz/my_quiz' => 'quiz#my_quiz'
+  get 'quiz/score' => 'quiz#score'
+  get 'quiz/init_quiz' => 'quiz#init_quiz', as: :start_quiz
 
 
   # Example of named route that can be invoked with purchase_url(id: product.id)

@@ -1,0 +1,21 @@
+<p>question <%=@prob_count%>. <%=@problem.prob_stat %></p>
+<form action='init_quiz' method="GET" >
+<input type="radio" name="option" value="1"><%=@problem.option1%><br>
+<input type="radio" name="option" value="2"><%=@problem.option2%><br>
+<input type="radio" name="option" value="3"><%=@problem.option3%><br>
+<input type="radio" name="option" value="4"><%=@problem.option4%><br>
+<input id="b1" type="submit" name="next" value="Next">
+<input id="b2" type="submit" name="end" value="End quiz">
+<input style="visibility:hidden;" id="decider" type="text" name="decider" value="0"></input>
+<input style="visibility:hidden;" id="quiz_id" type="text" name="quiz_id" value="<%=@quiz_id%>"></input>
+<input style="visibility:hidden;" id="problem_id" type="text" name="problem_id" value="<%=@prob_count%>"></input>
+</form>
+
+<script>
+$('#b1').on('click',function(){
+	  $('#decider').val("0");
+});
+$('#b2').on('click',function(){
+	  $('#decider').val("1");
+});
+</script
