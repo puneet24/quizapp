@@ -76,4 +76,43 @@ puts "%"*50
 puts @quiz_score
 puts "%"*50
 end
+
+def upload
+  uploaded_file = params[:file]
+  file_content = uploaded_file.read
+  file_content = file_content.to_s.split("\n")
+  create_obj= Quiz.find_by_sql(["select * from quizzes where quiz_name = ? ",file_content[0].to_s])
+  if create_obj.empty?
+    new_obj = Quiz.new
+    new_obj.quiz_name = file_content[0].to_s #quiz name
+    new_obj.quiz_type = file_content[1].to_s #quiz_type
+    new_obj.user_id = session[:user_id].to_i
+    new_obj.save!
+    session[:quiz_id] = new_obj.id
+    user_obj=User.find(session[:user_id].to_i)
+    if user_obj.quiz_organised.nil?
+      user_obj.update_attributes(:quiz_organised => 1)
+    else
+      user_obj.update_attributes(:quiz_organised => user_obj.quiz_organised+1)
+    end
+    no_of_questions = file_content[2].to_i
+    i = 0
+    while i < no_of_questions
+      prob_obj = Problem.new
+      prob_obj.prob_stat = file_content[3+i*6+0]
+      prob_obj.option1 = file_content[3+i*6+1]
+      prob_obj.option2 = file_content[3+i*6+2]
+      prob_obj.option3 = file_content[3+i*6+3]
+      prob_obj.option4 = file_content[3+i*6+4]
+      prob_obj.prob_ans = file_content[3+i*6+5]
+      prob_obj.quiz_id = session[:quiz_id]
+      prob_obj.save!
+      i = i+1
+    end
+  else
+    redirect_to action: 'create_quiz'
+  end
+  redirect_to :controller=>'dashboard', :action => 'index'
+end
+
 end

@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   get 'home/logout' => 'home#logout'
   get 'dashboard/index' => 'dashboard#index'
   get 'quiz/create_quiz' => 'quiz#create_quiz'
+  get 'quiz/upload_quiz' => 'quiz#upload_quiz'
+  post 'quiz/upload' => 'quiz#upload'
   get 'quiz/create' => 'quiz#create'
   get 'problem/add_problem' => 'problem#add_problem'
   get 'problem/add_prob' => 'problem#add_prob'
