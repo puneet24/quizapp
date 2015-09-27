@@ -29,7 +29,7 @@ class HomeController < ApplicationController
   		
   end
   def loginsubmit
-    user_obj= User.find_by_sql(["select * from users where username = ? or password = ? ",params[:username],params[:password]])[0]
+    user_obj= User.find_by_sql(["select * from users where username = ? and password = ? ",params[:username],params[:password]])[0]
     puts user_obj.inspect
     if user_obj.nil? 
       redirect_to action: 'login'

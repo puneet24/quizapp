@@ -1,5 +1,8 @@
 class DashboardController < ApplicationController
   def index
+    puts "%"*50
+    puts session[:user_id]
+    puts "%"*50
   	if params[:type].nil?
   		params[:type] = "all"
   	end
